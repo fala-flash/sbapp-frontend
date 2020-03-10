@@ -1,0 +1,21 @@
+
+
+        <body class="text-center">
+            <form (submit)="onRegisterSubmit()" class="form-signin">
+              <img class="mb-4" src="../../../../assets/user.png" alt="" width="72" height="72">
+              <input type="text" class="form-control" placeholder="Nome e Cognome" [(ngModel)]="name" name="name">
+              <input type="tel" class="form-control" placeholder="Telefono" [(ngModel)]="tel" name="tel">
+              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email">
+              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
+              <input type="radio" name="role" value="studente" [(ngModel)]="role">Studente 
+              <input type="radio" name="role" value="psicologo" [(ngModel)]="role">Psicologo
+              <br>
+              <br> 
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
+              <br>
+              <span>
+                <a href="/login">Hai già un account? Effettua l'accesso! -> </a>
+            </span>
+            </form>
+          </body>
+

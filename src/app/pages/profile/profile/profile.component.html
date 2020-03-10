@@ -1,0 +1,15 @@
+
+
+
+
+          <div *ngIf="user" class="card mx-auto" style="width: 18rem; margin-top: 10rem;">
+            <div *ngIf="user._id" class="card-header">
+              ID: {{user._id}}
+            </div>
+            <ul class="list-group list-group-flush">
+              <li *ngIf="user.name" class="list-group-item">Nome: {{user.name}}</li>
+              <li *ngIf="user.email" class="list-group-item">Email : {{user.email}}</li>
+              <li *ngIf="user.tel" class="list-group-item">Telefono : {{user.tel}}</li>
+              <li *ngIf="user.role" class="list-group-item">Ruolo : {{user.role}}</li>
+            </ul>
+          </div>
