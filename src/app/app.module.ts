@@ -18,6 +18,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PostMessageComponent } from './pages/post-message/post-message/post-message.component';
 import { BlogComponent } from './pages/blog/blog/blog.component';
+import { PersonalBlogComponent } from './pages/personal-blog/personal-blog/personal-blog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BlogComponent } from './pages/blog/blog/blog.component';
     ProfileComponent,
     NavbarComponent,
     PostMessageComponent,
-    BlogComponent
+    BlogComponent,
+    PersonalBlogComponent
   ],
   imports: [
     BrowserModule,

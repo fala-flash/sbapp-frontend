@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-blog',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
+  posts = []
+  constructor(private authService:AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.authService.getPosts().subscribe(post => {
+      this.posts = post;  
+    },
+     err => {
+       console.log(JSON.stringify(err));
+       return false;
+     });
   }
 
 }

@@ -11,11 +11,14 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { PostMessageComponent } from "./pages/post-message/post-message/post-message.component";
 import { BlogComponent } from './pages/blog/blog/blog.component';
+import { PersonalBlogComponent } from './pages/personal-blog/personal-blog/personal-blog.component';
+
 
 
 const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   { path: 'post-message', component: PostMessageComponent, canActivate:[AuthGuard]},
+  { path: 'personal-blog', component: PersonalBlogComponent, canActivate:[AuthGuard]},
   { path: 'blog', component: BlogComponent, canActivate:[AuthGuard]},
   { path: 'login',component: LoginComponent},
   { path: 'sign-up', component: RegisterComponent},

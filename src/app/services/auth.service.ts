@@ -47,6 +47,21 @@ export class AuthService {
     return this.http.get('http://localhost:8080/users/profile', {headers: headers})
   }
 
+  getPosts(): any{
+    this.loadToken();
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/posts/blog', {headers: headers})
+  }
+
+
+  getUserPosts(id): any{
+    this.loadToken();
+    let userID = id;
+    let url = `http://localhost:8080/posts/personal-blog/${userID}`;
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    return this.http.get(url, {headers: headers})
+  }
+
 
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
