@@ -16,8 +16,6 @@ import { AuthService } from '../../../services/auth.service';
 export class PostMessageComponent implements OnInit {
 
   text: string;
-  date = moment().format('DD/MM/YYYY').toString();
-  time = moment().format('HH:mm:ss').toString();
   authorID = '';
   authorName = '';
   authorEmail = '';
@@ -50,8 +48,8 @@ export class PostMessageComponent implements OnInit {
   onSendSubmit(){
     const message = {
       text: this.text,
-      date: this.date,
-      time: this.time,
+      date: moment().format('DD/MM/YYYY').toString(),
+      time: moment().format('HH:mm:ss').toString(),
       authorID: this.authorID,
       authorName: this.authorName,
       authorEmail: this.authorEmail,

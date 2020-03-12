@@ -1,17 +1,19 @@
-
 <div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts; let i = index">
     <div class="card" style="width: 18rem; margin: auto;">{{i+1}}
         <div class="card-body">
-        <h5 class="card-title">{{field.date}}</h5>
+        <h6 class="card-title">post: {{field._id}}</h6>
+        <h6 class="card-title">nome: {{field.authorName}}</h6>
+        <h6 class="card-title">email: {{field.authorEmail}}</h6>
+        <h6 class="card-title">{{field.date}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">{{field.time}}</h6>
         <p class="card-text">{{field.text}}</p>
-        <form (submit)="onCommentSubmit()">
+        <form #myForm="ngForm" (submit)="onCommentSubmit(i); myForm.resetForm()">
             <div class="form-group">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text"></div>
                     </div>
-                    <textarea  [(ngModel)]="text" name="text" rows="6" class="form-control" placeholder="Scrivi il commento..." required></textarea>
+                    <textarea  [(ngModel)]="comments[i]"  name="text" rows="6" class="form-control" placeholder="Scrivi un commento..." required></textarea>
                 </div>
             </div>
             <div class="text-center">
