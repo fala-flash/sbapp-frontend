@@ -1,10 +1,61 @@
-<div class="grid-container">
-    <div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts">
-        <div class="card" style="width: 18rem; margin: auto;">
-            <div class="card-body">
-                <h6 class="card-title">{{field.date}} <span class="card-subtitle mb-2 text-muted">{{field.time}}</span></h6>
-            <p class="card-text">{{field.text}}</p>
-        </div>
-    </div>
-</div>
+<div class="container" style="margin-top: 10rem;" *ngFor="let field of posts; let i = index">
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8 col-lg-6 pb-5">
+                    <form >
+                        <div class="card border-info" style="border: 4px solid lightseagreen;
+                        border-radius: 15px;
+                        padding:10px;">
+                            <div class="text-white bg-info card-header p-0" style="border: 3px solid lightseagreen;
+                            border-radius: 15px;
+                            padding:10px;">
+                            {{i+1}}
+                                <div class="text-center py-2">
+                                    <p #POSTID id="postid" style="font-weight: lighter; font-size: 10px;">{{field._id}}</p>
+                                    <h6 style="font-weight: bold;">{{field.date}}</h6>
+                                    <h6 style="font-weight: bold;">{{field.authorEmail}}</h6>
+                                    <h5>{{field.text}}</h5>
+                                    <p style="text-align: right; font-weight: bold; margin-bottom: 0;">{{field.time}}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="border: 3px solid lightseagreen;
+                                        border-radius: 15px;
+                                        margin-top: 1rem;
+                                        padding:10px;
+                                        " *ngFor="let comment of field.comments">
+                                    <h6 style="font-weight: bold;">{{comment.author}}
+                                        <span class="card-subtitle mb-2 text-muted"> {{comment.date}}</span>
+                                        <span class="card-subtitle mb-2 text-muted"> {{comment.time}}</span></h6>
+                                    <h6 style="font-size: smaller;">{{comment.text}}</h6>   
+                            </div>
 
+                            <form #myForm="ngForm" (submit)="getPostId(POSTID); onCommentSubmit(i); myForm.resetForm()">
+                                <div class="card-body p-3">
+                                    <div class="form-group">
+                                        <div class="input-group mb-2" style="border: 3px solid lightseagreen;
+                                        border-radius: 15px;
+                                        padding:10px;">
+                                            <textarea style="border: 3px solid lightseagreen;
+                                            border-radius: 15px;
+                                            font-size: medium;
+                                            padding:10px;" [(ngModel)]="comments[i]"
+                                            name="text" 
+                                            rows="3" 
+                                            class="form-control" 
+                                            placeholder="Scrivi un commento..." required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-center" >
+                                        <input style="border: 4px solid lightseagreen;
+                                        border-radius: 15px;
+                                        padding:10px;" type="submit" value="Commenta" class="btn btn-info btn-block py-2">
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            
+                        </div>
+                    </form>
+                </div>
+	</div>
+</div>
