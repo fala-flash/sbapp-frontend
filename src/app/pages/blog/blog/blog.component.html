@@ -1,24 +1,25 @@
-<div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts; let i = index">
-    <div class="card" style="width: 18rem; margin: auto;">{{i+1}}
-        <div class="card-body">
-        <h6 class="card-title">post: {{field._id}}</h6>
-        <h6 class="card-title">nome: {{field.authorName}}</h6>
-        <h6 class="card-title">email: {{field.authorEmail}}</h6>
-        <h6 class="card-title">{{field.date}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">{{field.time}}</h6>
-        <p class="card-text">{{field.text}}</p>
-        <form #myForm="ngForm" (submit)="onCommentSubmit(i); myForm.resetForm()">
-            <div class="form-group">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"></div>
+<div class="grid-container">
+    <div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts; let i = index">
+        <div class="card" style="width: 18rem; margin: auto;">{{i+1}}
+            <div class="card-body">
+                <span style="display: inline;" #POSTID id="postid" class="card-title">{{field._id}}</span>
+            <h6 class="card-title">{{field.date}} <span class="card-subtitle mb-2 text-muted">{{field.time}}</span></h6>
+            <h6 class="card-title">email: {{field.authorEmail}}</h6>
+            <p class="card-text">{{field.text}}</p>
+            <form #myForm="ngForm" (submit)="getPostId(POSTID); onCommentSubmit(i); myForm.resetForm()">
+                <div class="form-group">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"></div>
+                        </div>
+                        <textarea  [(ngModel)]="comments[i]"  name="text" rows="6" class="form-control" placeholder="Scrivi un commento..." required></textarea>
                     </div>
-                    <textarea  [(ngModel)]="comments[i]"  name="text" rows="6" class="form-control" placeholder="Scrivi un commento..." required></textarea>
                 </div>
-            </div>
-            <div class="text-center">
-                <input type="submit" value="Commenta" class="btn btn-info btn-block rounded-0 py-2">
-            </div>
-        </form>
+                <div class="text-center">
+                    <input type="submit" value="Commenta" class="btn btn-info btn-block rounded-0 py-2">
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+

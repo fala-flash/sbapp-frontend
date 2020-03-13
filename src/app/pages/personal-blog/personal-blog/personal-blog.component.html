@@ -1,9 +1,10 @@
-
-<div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts">
-    <div class="card" style="width: 18rem; margin: auto;">
-        <div class="card-body">
-        <h5 class="card-title">{{field.date}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{field.time}}</h6>
-        <p class="card-text">{{field.text}}</p>
+<div class="grid-container">
+    <div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts">
+        <div class="card" style="width: 18rem; margin: auto;">
+            <div class="card-body">
+                <h6 class="card-title">{{field.date}} <span class="card-subtitle mb-2 text-muted">{{field.time}}</span></h6>
+            <p class="card-text">{{field.text}}</p>
+        </div>
     </div>
 </div>
+

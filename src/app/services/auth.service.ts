@@ -31,6 +31,15 @@ export class AuthService {
     .pipe(map(res => res));
   }
 
+
+  addComment(postId, comment){
+    this.loadToken();
+    let postid = postId;
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    return this.http.post(`http://localhost:8080/posts/blog/comment/${postid}`, comment, {headers: headers})
+    .pipe(map(res => res));
+  }
+
   authenticateUser(user){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -61,6 +70,8 @@ export class AuthService {
     let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
     return this.http.get(url, {headers: headers})
   }
+
+
 
 
   storeUserData(token, user){

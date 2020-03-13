@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import * as moment from 'moment';
@@ -15,7 +15,7 @@ export class BlogComponent implements OnInit {
   authorEmail = '';
   authorTel = 0;
   
-
+  IDPOST = ''
   posts = []
   comments: string[] = []
 
@@ -44,6 +44,11 @@ export class BlogComponent implements OnInit {
      });
   }
 
+  getPostId(POSTID: any){
+    let postId: string = <unknown>POSTID.innerHTML as string;
+    this.IDPOST = postId;
+  }
+
   onCommentSubmit(i: number){
 
     //if a comment is null, it becomes an empty string (if not, can cause problem)
@@ -52,12 +57,9 @@ export class BlogComponent implements OnInit {
     }
     const comment = {
       text: this.comments[i].replace(/(\r\n|\n|\r)/gm, ""),
-      date: moment().format('DD/MM/YYYY').toString(),
+      date: moment().format('DD:MM:YYYY').toString(),
       time: moment().format('HH:mm:ss').toString(),
-      authorID: this.authorID,
-      authorName: this.authorName,
-      authorEmail: this.authorEmail,
-      authorTel: this.authorTel,
+      author: this.authorEmail
     }
 
     //validate message
@@ -67,8 +69,22 @@ export class BlogComponent implements OnInit {
     }
 
     //post comment
-    this.flashMessagesService.show('Commento inserito', { cssClass: 'alert-success', timeout: 3000 });
+    console.log(this.IDPOST);
     console.log(comment);
+
+    this.authService.addComment(this.IDPOST, comment).subscribe(data => {
+      if ((data as any).success) {
+        this.flashMessagesService.show('Commento inserito', { cssClass: 'alert-success', timeout: 3000 });
+      } else {
+        this.flashMessagesService.show('Commento non inserito', { cssClass: 'alert-danger', timeout: 3000 });
+      }
+    })
+
+    
+  
+    
+    
+    
     this.ngOnInit();
 
 
@@ -82,5 +98,6 @@ export class BlogComponent implements OnInit {
       this.comments.push("");
     }
   }
+
 
 }
