@@ -69,8 +69,6 @@ export class BlogComponent implements OnInit {
     }
 
     //post comment
-    console.log(this.IDPOST);
-    console.log(comment);
 
     this.authService.addComment(this.IDPOST, comment).subscribe(data => {
       if ((data as any).success) {
