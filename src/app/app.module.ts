@@ -40,8 +40,8 @@ import { PersonalBlogComponent } from './pages/personal-blog/personal-blog/perso
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut:2000,
-      positionClass: 'toast-center-center'
+      timeOut:1500,
+      positionClass: 'toast-top-center'
     }),
     BrowserAnimationsModule
   ],
