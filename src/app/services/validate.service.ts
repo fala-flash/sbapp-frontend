@@ -26,7 +26,7 @@ export class ValidateService {
   }
 
   validateMessage(message){
-    if (message.text == undefined) {
+    if (message.text == undefined || !message.text.replace(/\s/g, '').length) {
       return false;
     } else {
       return true;
