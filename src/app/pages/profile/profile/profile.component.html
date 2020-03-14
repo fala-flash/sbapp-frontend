@@ -1,15 +1,21 @@
 
+              <div *ngIf="user" class="card mx-auto" style="width: 18rem; margin-top: 10rem; border-radius: 15px; border: 5px solid rgb(0, 163, 186);">
+                <div class="card-border-info" style="background-color: rgb(0, 163, 186); color: white;border-radius: 15px;border: 3px solid rgb(0, 163, 186); " *ngIf="user._id" class="card-header">
+                  <span style="font-weight: bold;">{{user._id}}</span>
+                </div>
+                <ul class="list-group list-group-flush" style="text-align: center; border-radius: 15px; padding: 10px;">
+                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.name" class="list-group-item">Nome: <span style="font-weight: bold;">{{user.name}}</span></li>
+                  <br>
+                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.email" class="list-group-item">Email : <span style="font-weight: bold;">{{user.email}}</span></li>
+                  <br>
+                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.tel" class="list-group-item">Telefono : <span style="font-weight: bold;">{{user.tel}}</span></li>
+                  <br>
+                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.role" class="list-group-item">Ruolo : <span style="font-weight: bold;">{{user.role}}</span></li>
+                </ul>
+              </div>
+            
+        
+        
+          
 
 
-
-          <div *ngIf="user" class="card mx-auto" style="width: 18rem; margin-top: 10rem;">
-            <div *ngIf="user._id" class="card-header">
-              ID: {{user._id}}
-            </div>
-            <ul class="list-group list-group-flush">
-              <li *ngIf="user.name" class="list-group-item">Nome: {{user.name}}</li>
-              <li *ngIf="user.email" class="list-group-item">Email : {{user.email}}</li>
-              <li *ngIf="user.tel" class="list-group-item">Telefono : {{user.tel}}</li>
-              <li *ngIf="user.role" class="list-group-item">Ruolo : {{user.role}}</li>
-            </ul>
-          </div>

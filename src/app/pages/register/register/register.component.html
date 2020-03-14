@@ -3,19 +3,30 @@
         <body class="text-center">
             <form (submit)="onRegisterSubmit()" class="form-signin">
               <img class="mb-4" src="../../../../assets/user.png" alt="" width="72" height="72">
-              <input type="text" class="form-control" placeholder="Nome e Cognome" [(ngModel)]="name" name="name">
-              <input type="tel" class="form-control" placeholder="Telefono" [(ngModel)]="tel" name="tel">
-              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email">
-              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
-              <input type="radio" name="role" value="studente" [(ngModel)]="role">Studente 
-              <input type="radio" name="role" value="psicologo" [(ngModel)]="role">Psicologo
+              <input style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" type="text" class="form-control" placeholder="Nome e Cognome" [(ngModel)]="name" name="name">
+              <br>
+              <input style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" type="tel" class="form-control" placeholder="Telefono" [(ngModel)]="tel" name="tel">
+              <br>
+              <input style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email">
+              <br>
+              <input style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
+              <br>
+              <input type="radio" name="role" value="studente" [(ngModel)]="role"><span style=" font-size: larger; font-weight: bold; color: rgb(0, 163, 186);">
+                Studente
+              </span>  
+              <input type="radio" name="role" value="psicologo" [(ngModel)]="role"><span style="font-size: larger; font-weight: bold; color: rgb(0, 163, 186);">
+                Psicologo
+              </span>
               <br>
               <br> 
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
+              <button style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" class="btn btn-lg btn-info btn-block" type="submit">Registrati</button>
               <br>
               <span>
-                <a href="/login">Hai già un account? Effettua l'accesso! -> </a>
+                <a style="color: rgb(0, 163, 186);" href="/login">Hai già un account? Effettua l'accesso! -> </a>
             </span>
             </form>
           </body>
+
+
+
 
