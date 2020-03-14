@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { FlashMessagesModule } from 'angular2-flash-messages';
 import { HttpClientModule } from '@angular/common/http';
+
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,8 +38,12 @@ import { PersonalBlogComponent } from './pages/personal-blog/personal-blog/perso
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FlashMessagesModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut:2000,
+      positionClass: 'toast-center-center'
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     ValidateService,

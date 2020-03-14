@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../../services/validate.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
+
 import * as moment from 'moment';
 import { Router } from "@angular/router";
 import { AuthService } from '../../../services/auth.service';
+
+import { ToastrService } from "ngx-toastr";
 
 
 
@@ -24,10 +26,11 @@ export class PostMessageComponent implements OnInit {
 
 
 
-  constructor(private flashMessagesService: FlashMessagesService,
+  constructor(
               private validateService: ValidateService,
               private router: Router,
               private authService:AuthService,
+              private toastrService: ToastrService
               ){}
 
   ngOnInit() {
@@ -58,17 +61,17 @@ export class PostMessageComponent implements OnInit {
 
     //validate message
     if (!this.validateService.validateMessage(message)) {
-      this.flashMessagesService.show('Scrivi una segnalazione', { cssClass: 'alert-danger', timeout: 3000 });
+      this.toastrService.warning('Non puoi inviare una segnalazione vuota');
       return false;
     }
     
     //post message
     this.authService.addPost(message).subscribe(data => {
       if ((data as any).success) {
-        this.flashMessagesService.show('Segnalazione inviata', { cssClass: 'alert-success', timeout: 3000 });
+        this.toastrService.success('Segnalazione inviata con successo');
         this.router.navigate(['/blog']);
       } else {
-        this.flashMessagesService.show('Errore invio', { cssClass: 'alert-danger', timeout: 3000 });
+        this.toastrService.error("Errore durante l'invio della segnalazione");
         this.router.navigate(['/blog']);
       }
     });

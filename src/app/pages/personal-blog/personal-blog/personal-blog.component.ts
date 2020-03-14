@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import * as moment from 'moment';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-personal-blog',
@@ -26,7 +26,7 @@ export class PersonalBlogComponent implements OnInit {
 
   
 
-  constructor(private flashMessagesService: FlashMessagesService,private authService:AuthService) { }
+  constructor(private toastrService: ToastrService, private authService:AuthService) { }
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
@@ -76,7 +76,7 @@ export class PersonalBlogComponent implements OnInit {
 
     //validate message
     if (!comment.text.replace(/\s/g, '').length ) {
-      this.flashMessagesService.show('Scrivi un commento', { cssClass: 'alert-danger', timeout: 3000 });
+      this.toastrService.warning('Non puoi inserire un commento vuoto');
       return false;
     }
 
@@ -84,9 +84,9 @@ export class PersonalBlogComponent implements OnInit {
     this.authService.addComment(this.IDPOST, comment).subscribe(data => {
       this.ngOnInit();  //così vedo il commento appena inserito!
       if ((data as any).success) {
-        this.flashMessagesService.show('Commento inserito', { cssClass: 'alert-success', timeout: 3000 });
+        this.toastrService.success("Commento inserito");
       } else {
-        this.flashMessagesService.show('Commento non inserito', { cssClass: 'alert-danger', timeout: 3000 });
+        this.toastrService.error("Errore durante l'invio del commento");
       }
     })
 

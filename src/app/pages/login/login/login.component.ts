@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
+
+import { ToastrService } from "ngx-toastr";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private flashMessagesService: FlashMessagesService
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -32,11 +33,11 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateUser(user).subscribe(data => {
       if ((data as any).success) {
         this.authService.storeUserData((data as any).token, (data as any).user);
-        this.flashMessagesService.show('You are now logged in', {cssClass: 'alert-success', timeout: 5000});
         this.router.navigate(['/profile']);
+        this.toastrService.success('Benvenuto!');
       } else {
-        this.flashMessagesService.show((data as any).msg, {cssClass: 'alert-danger', timeout: 5000});
         this.router.navigate(['/login']);
+        this.toastrService.error('Utente non trovato');
       }
       
     });

@@ -1,0 +1,10 @@
+div{
+    height: 400px;
+    width: 800px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: rgb(0, 163, 186);
+  }
