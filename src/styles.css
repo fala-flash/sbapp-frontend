@@ -8,3 +8,12 @@ body, html{
     margin: 0;
     padding: 0;
 }
+
+.toast-top-right {
+    top: 80px;
+    right: 12px;
+  }
+
+.toast-container .ngx-toastr {
+    border-radius: 15px;
+}

@@ -53,6 +53,13 @@ export class RegisterComponent implements OnInit {
       return false;
     }
 
+
+    // validate password
+    if(!this.validateService.validatePassword(user.password)){
+      this.toastrService.warning("La password deve contenere almeno 8 caratteri");
+      return false;
+    }
+
     // validate phone
     if(!this.validateService.validatePhone(user.tel)){
       this.toastrService.warning("Formato telefonico non valido");
@@ -62,11 +69,10 @@ export class RegisterComponent implements OnInit {
     // register user
     this.authService.registerUser(user).subscribe(data => {
       if ((data as any).success) {
-        this.toastrService.success('Registrazione avvenuta con successo.\nEffettua il login!');
+        this.toastrService.success((data as any).msg);
         this.router.navigate(['/login']);
       } else {
-        this.toastrService.error("Errore durante la fase di registrazione.\nProva un'altra email");
-        this.router.navigate(['/register']);
+        this.toastrService.error((data as any).msg);
       }
     });
 

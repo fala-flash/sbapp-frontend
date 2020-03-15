@@ -68,10 +68,10 @@ export class PostMessageComponent implements OnInit {
     //post message
     this.authService.addPost(message).subscribe(data => {
       if ((data as any).success) {
-        this.toastrService.success('Segnalazione inviata con successo');
+        this.toastrService.success((data as any).msg);
         this.router.navigate(['/blog']);
       } else {
-        this.toastrService.error("Errore durante l'invio della segnalazione");
+        this.toastrService.error((data as any).msg);
         this.router.navigate(['/blog']);
       }
     });

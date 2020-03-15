@@ -81,9 +81,9 @@ export class BlogComponent implements OnInit {
     this.authService.addComment(this.IDPOST, comment).subscribe(data => {
       this.ngOnInit();  //così vedo il commento appena inserito!
       if ((data as any).success) {
-        this.toastrService.success('Commento inserito');
+        this.toastrService.success((data as any).msg);
       } else {
-        this.toastrService.error("Errore durante l'invio del commento");
+        this.toastrService.error((data as any).msg);
       }
     })
 
