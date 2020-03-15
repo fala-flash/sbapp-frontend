@@ -67,7 +67,8 @@ export class BlogComponent implements OnInit {
       text: this.comments[i].replace(/(\r\n|\n|\r)/gm, ""),
       date: moment().format('DD/MM/YYYY').toString(),
       time: moment().format('HH:mm:ss').toString(),
-      author: this.authorEmail
+      author: this.authorEmail,
+      authorid: this.authorID
     }
 
     //validate message
