@@ -21,6 +21,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PostMessageComponent } from './pages/post-message/post-message/post-message.component';
 import { BlogComponent } from './pages/blog/blog/blog.component';
 import { PersonalBlogComponent } from './pages/personal-blog/personal-blog/personal-blog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { PersonalBlogComponent } from './pages/personal-blog/personal-blog/perso
       preventDuplicates: true,
       positionClass: 'toast-top-right'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     ValidateService,
