@@ -16,6 +16,7 @@
                                     <h6 style="font-weight: bold;">{{field.date}}</h6>
                                     <h6 style="font-weight: bold;">{{field.authorEmail}}</h6>
                                     <h5>{{field.text}}</h5>
+                                    <h5 style="font-weight: bolder;">{{field.sentiment}}</h5>
                                     <p style="text-align: right; font-weight: bold; margin-bottom: 0;">{{field.time}}</p>
                                 </div>
                             </div>
@@ -26,8 +27,10 @@
                                         padding:10px;
                                         " *ngFor="let comment of field.comments">
                                     <h6 style="font-weight: bold;">{{comment.author}}
+                                
                                         <span class="card-subtitle mb-2 text-muted"> {{comment.date}}</span>
-                                        <span class="card-subtitle mb-2 text-muted"> {{comment.time}}</span></h6>
+                                        <span class="card-subtitle mb-2 text-muted"> {{comment.time}}</span>
+                                        <span class="card-subtitle mb-2"> {{comment.sentiment}}</span></h6>
                                     <h6 style="font-size: smaller;">{{comment.text}}</h6>   
                             </div>
 
