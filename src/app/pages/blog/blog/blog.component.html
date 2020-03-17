@@ -10,9 +10,9 @@
                             <div class="text-white bg-info card-header p-0" style="border: 3px solid lightseagreen;
                             border-radius: 15px;
                             padding:10px;">
-                            {{i+1}}
+                            <div style="display: none;">{{i+1}}</div>
                                 <div class="text-center py-2">
-                                    <p #POSTID id="postid" style="font-weight: lighter; font-size: 10px;">{{field._id}}</p>
+                                    <p #POSTID id="postid" style="display: none; font-weight: lighter; font-size: 10px;">{{field._id}}</p>
                                     <h6 style="font-weight: bold;">{{field.date}}</h6>
                                     <h6 style="font-weight: bold;">{{field.authorEmail}}</h6>
                                     <h5>{{field.text}}</h5>
