@@ -19,7 +19,8 @@ export class BlogComponent implements OnInit {
   authorTel = 0;
   
   // dati relativi ai post
-  IDPOST = ''  //id del post su cui clicco commenta
+  IDPOST = ''  //id del post su cui clicco commenta e cancella
+  IDCOMMENT = '' //id del commento su cui clicco cancella
   posts = []   // array contenente tutti i post
   comments: string[] = []  //array che serve per gestire la textarea
 
@@ -56,6 +57,11 @@ export class BlogComponent implements OnInit {
     this.IDPOST = postId;
   }
 
+  getCommentId(COMMENTID: any){
+    let commentId: string = <unknown>COMMENTID.innerHTML as string;
+    this.IDCOMMENT = commentId;
+  }
+
   onCommentSubmit(i: number){
     
 
@@ -87,9 +93,30 @@ export class BlogComponent implements OnInit {
         this.toastrService.error((data as any).msg);
       }
     })
+  }
 
-    
 
+  onDeletePost(){
+    this.authService.removePost(this.IDPOST).subscribe(data => {
+      this.ngOnInit(); //così il post scompare subito
+      if ((data as any).success) {
+        this.toastrService.success((data as any).msg);
+      } else {
+        this.toastrService.error((data as any).msg);
+      }
+    })
+  }
+
+  onDeleteComment(){
+    /* this.ngOnInit(); */  //così vedo il commento appena rimosso
+    this.authService.removeComment(this.IDPOST, this.IDCOMMENT).subscribe(data => {
+      this.ngOnInit(); //così il commento scompare subito
+      if ((data as any).success) {
+        this.toastrService.success((data as any).msg);
+      } else {
+        this.toastrService.error((data as any).msg);
+      }
+    })
   }
 
   initComments(){

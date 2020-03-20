@@ -32,12 +32,31 @@ export class AuthService {
   }
 
 
+  removePost(postid){
+    this.loadToken();
+    let postID = postid;
+    let url = `http://localhost:8080/posts/delete/post/${postID}`;
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    return this.http.delete(url, {headers: headers})
+  }
+
+
   addComment(postId, comment){
     this.loadToken();
     let postid = postId;
     let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
     return this.http.post(`http://localhost:8080/posts/blog/comment/${postid}`, comment, {headers: headers})
     .pipe(map(res => res));
+  }
+
+
+  removeComment(postid, commentid){
+    this.loadToken();
+    let postID = postid;
+    let commentID = commentid;
+    let url = `http://localhost:8080/posts/delete/comment/${postID}/${commentID}`;
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    return this.http.delete(url, {headers: headers})  
   }
 
   authenticateUser(user){
