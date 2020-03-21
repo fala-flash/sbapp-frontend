@@ -17,12 +17,16 @@ export class BlogComponent implements OnInit {
   authorName = '';
   authorEmail = '';
   authorTel = 0;
+  authorRole: '';
+
+  psicologo = 'psicologo'; //cafonata allucinante per vedere il ruolo -> DEVE ESSERE CAMBIATA
   
   // dati relativi ai post
   IDPOST = ''  //id del post su cui clicco commenta e cancella
   IDCOMMENT = '' //id del commento su cui clicco cancella
   posts = []   // array contenente tutti i post
   comments: string[] = []  //array che serve per gestire la textarea
+  
 
 
   constructor(private toastrService: ToastrService,
@@ -44,6 +48,7 @@ export class BlogComponent implements OnInit {
       this.authorName = profile.user.name;
       this.authorEmail = profile.user.email;
       this.authorTel = profile.user.tel;
+      this.authorRole = profile.user.role;
     },
      err => {
        console.log(JSON.stringify(err));
@@ -70,6 +75,7 @@ export class BlogComponent implements OnInit {
       this.comments[i] = '';
     }
     const comment = {
+      postId: this.IDPOST,
       text: this.comments[i].replace(/(\r\n|\n|\r)/gm, ""),
       date: moment().format('DD/MM/YYYY').toString(),
       time: moment().format('HH:mm:ss').toString(),

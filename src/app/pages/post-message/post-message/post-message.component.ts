@@ -22,6 +22,7 @@ export class PostMessageComponent implements OnInit {
   authorName = '';
   authorEmail = '';
   authorTel = 0;
+  authorRole = '';
 
 
 
@@ -39,6 +40,7 @@ export class PostMessageComponent implements OnInit {
       this.authorName = profile.user.name;
       this.authorEmail = profile.user.email;
       this.authorTel = profile.user.tel;
+      this.authorRole = profile.user.role
     },
      err => {
        console.log(JSON.stringify(err));
@@ -56,7 +58,8 @@ export class PostMessageComponent implements OnInit {
       authorID: this.authorID,
       authorName: this.authorName,
       authorEmail: this.authorEmail,
-      authorTel: this.authorTel
+      authorTel: this.authorTel,
+      authorRole: this.authorRole
     }
 
     //validate message

@@ -10,7 +10,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class PersonalBlogComponent implements OnInit {
 
-  userID = '';
+
 
   // dati profilo utente loggato, e che quindi può commentare
   text: string;
@@ -18,9 +18,13 @@ export class PersonalBlogComponent implements OnInit {
   authorName = '';
   authorEmail = '';
   authorTel = 0;
+  authorRole: '';
+
+  psicologo = 'psicologo'; //cafonata allucinante per vedere il ruolo -> DEVE ESSERE CAMBIATA
 
   // dati relativi ai post
-  IDPOST = ''  //id del post su cui clicco commenta
+  IDPOST = ''  //id del post su cui clicco commenta e cancella
+  IDCOMMENT = '' //ID del commento su cui clicco cancella
   posts = []   // array contenente tutti i post
   comments: string[] = []  //array che serve per gestire la textarea
 
@@ -30,11 +34,12 @@ export class PersonalBlogComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
-      this.userID = profile.user._id;
+      this.authorID = profile.user._id;
       this.authorName = profile.user.name;
       this.authorEmail = profile.user.email;
       this.authorTel = profile.user.tel;
-      this.authService.getUserPosts(this.userID).subscribe(post => {
+      this.authorRole = profile.user.role;
+      this.authService.getUserPosts(this.authorID).subscribe(post => {
         this.posts = post;
         this.posts.reverse(); //così in cima c'è sempre l'ultimo inserito
         this.initComments();
@@ -60,6 +65,11 @@ export class PersonalBlogComponent implements OnInit {
     this.IDPOST = postId;
   }
 
+  getCommentId(COMMENTID: any){
+    let commentId: string = <unknown>COMMENTID.innerHTML as string;
+    this.IDCOMMENT = commentId;
+  }
+
   onCommentSubmit(i: number){
     
 
@@ -68,10 +78,12 @@ export class PersonalBlogComponent implements OnInit {
       this.comments[i] = '';
     }
     const comment = {
+      postId: this.IDPOST,
       text: this.comments[i].replace(/(\r\n|\n|\r)/gm, ""),
       date: moment().format('DD/MM/YYYY').toString(),
       time: moment().format('HH:mm:ss').toString(),
-      author: this.authorEmail
+      author: this.authorEmail,
+      authorid: this.authorID
     }
 
     //validate message
@@ -89,10 +101,32 @@ export class PersonalBlogComponent implements OnInit {
         this.toastrService.error((data as any).msg);
       }
     })
-
-    
-
   }
+
+
+  onDeletePost(){
+    this.authService.removePost(this.IDPOST).subscribe(data => {
+      this.ngOnInit(); //così il post scompare subito
+      if ((data as any).success) {
+        this.toastrService.success((data as any).msg);
+      } else {
+        this.toastrService.error((data as any).msg);
+      }
+    })
+  }
+
+  onDeleteComment(){
+    /* this.ngOnInit(); */  //così vedo il commento appena rimosso
+    this.authService.removeComment(this.IDPOST, this.IDCOMMENT).subscribe(data => {
+      this.ngOnInit(); //così il commento scompare subito
+      if ((data as any).success) {
+        this.toastrService.success((data as any).msg);
+      } else {
+        this.toastrService.error((data as any).msg);
+      }
+    })
+  }
+
 
   initComments(){
     for(var i = 0; i<this.posts.length; i++){

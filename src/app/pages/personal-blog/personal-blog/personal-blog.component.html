@@ -1,3 +1,5 @@
+
+
 <div class="container" style="margin-top: 10rem;" *ngFor="let field of posts; let i = index">
 	<div class="row justify-content-center">
 		<div class="col-12 col-md-8 col-lg-6 pb-5">
@@ -11,8 +13,10 @@
                             <div style="display: none;">{{i+1}}</div>
                                 <div class="text-center py-2">
                                     <p #POSTID id="postid" style="display: none; font-weight: lighter; font-size: 10px;">{{field._id}}</p>
+                                    <button *ngIf="authorEmail == field.authorEmail || authorRole == psicologo " (click)="getPostId(POSTID); onDeletePost()">cancella post</button>
                                     <h6 style="font-weight: bold;">{{field.date}}</h6>
                                     <h6 style="font-weight: bold;">{{field.authorEmail}}</h6>
+                                    <h6 style="font-weight: bold;">{{field.authorRole}}</h6>
                                     <h5>{{field.text}}</h5>
                                     <h5 style="font-weight: bolder;">{{field.sentiment}}</h5>
                                     <p style="text-align: right; font-weight: bold; margin-bottom: 0;">{{field.time}}</p>
@@ -25,6 +29,8 @@
                                         padding:10px;
                                         " *ngFor="let comment of field.comments">
                                     <h6 style="font-weight: bold;">{{comment.author}}
+                                        <h6 #COMMENTID id="commentid" style="display: none; font-weight: lighter; font-size: 10px;">{{comment._id}}</h6>
+                                        <button *ngIf="authorEmail == comment.author || authorEmail == field.authorEmail || authorRole == psicologo" (click)="getPostId(POSTID); getCommentId(COMMENTID); onDeleteComment()">cancella commento</button>
                                         <span class="card-subtitle mb-2 text-muted"> {{comment.date}}</span>
                                         <span class="card-subtitle mb-2 text-muted"> {{comment.time}}</span>
                                         <span class="card-subtitle mb-2"> {{comment.sentiment}}</span></h6>
@@ -61,3 +67,85 @@
                 </div>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div style="margin-bottom: 1rem; margin-top: 1rem;" *ngFor="let field of posts; let i = index">
+    <div class="card" style="width: 18rem; margin: auto;">{{i+1}}
+        <div class="card-body">
+            <h6 #POSTID id="postid" class="card-title">{{field._id}}</h6>
+        <h6 class="card-title">{{field.date}} <span class="card-subtitle mb-2 text-muted">{{field.time}}</span></h6>
+        <h6 class="card-title">email: {{field.authorEmail}}</h6>
+        <p class="card-text">{{field.text}}</p>
+        <div *ngFor="let comment of field.comments">
+                <div>
+                   testo: {{comment.text}}
+                <div>
+                   data:  {{comment.date}}
+                </div>
+                <div>
+                  ora:   {{comment.time}}
+                </div>
+                <div>
+                   email: {{comment.author}}
+                </div>
+            </div>
+            
+        </div>
+        <form #myForm="ngForm" (submit)="getPostId(POSTID); onCommentSubmit(i); myForm.resetForm()">
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"></div>
+                    </div>
+                    <textarea  [(ngModel)]="comments[i]"  name="text" rows="6" class="form-control" placeholder="Scrivi un commento..." required></textarea>
+                </div>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Commenta" class="btn btn-info btn-block rounded-0 py-2">
+            </div>
+        </form>
+    </div>
+</div>
+  
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
