@@ -13,7 +13,7 @@
                             <div style="display: none;">{{i+1}}</div>
                                 <div class="text-center py-2">
                                     <p #POSTID id="postid" style="display: none; font-weight: lighter; font-size: 10px;">{{field._id}}</p>
-                                    <button *ngIf="authorEmail == field.authorEmail || authorRole == psicologo " (click)="getPostId(POSTID); onDeletePost()">cancella post</button>
+                                    <button *ngIf="authorEmail == field.authorEmail || authorRole == 'psicologo' " (click)="getPostId(POSTID); onDeletePost()">cancella post</button>
                                     <h6 style="font-weight: bold;">{{field.date}}</h6>
                                     <h6 style="font-weight: bold;">{{field.authorEmail}}</h6>
                                     <h6 style="font-weight: bold;">{{field.authorRole}}</h6>
@@ -30,7 +30,7 @@
                                         " *ngFor="let comment of field.comments">
                                     <h6 style="font-weight: bold;">{{comment.author}}
                                         <h6 #COMMENTID id="commentid" style="display: none; font-weight: lighter; font-size: 10px;">{{comment._id}}</h6>
-                                        <button *ngIf="authorEmail == comment.author || authorEmail == field.authorEmail || authorRole == psicologo" (click)="getPostId(POSTID); getCommentId(COMMENTID); onDeleteComment()">cancella commento</button>
+                                        <button *ngIf="authorEmail == comment.author || authorEmail == field.authorEmail || authorRole == 'psicologo'" (click)="getPostId(POSTID); getCommentId(COMMENTID); onDeleteComment()">cancella commento</button>
                                         <span class="card-subtitle mb-2 text-muted"> {{comment.date}}</span>
                                         <span class="card-subtitle mb-2 text-muted"> {{comment.time}}</span>
                                         <span class="card-subtitle mb-2"> {{comment.sentiment}}</span></h6>

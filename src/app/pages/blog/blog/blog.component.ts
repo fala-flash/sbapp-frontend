@@ -17,9 +17,11 @@ export class BlogComponent implements OnInit {
   authorName = '';
   authorEmail = '';
   authorTel = 0;
-  authorRole: '';
+  authorRole: string;
 
-  psicologo = 'psicologo'; //cafonata allucinante per vedere il ruolo -> DEVE ESSERE CAMBIATA
+  /* authorRole: ''; */
+
+  /* psicologo = 'psicologo'; //cafonata allucinante per vedere il ruolo -> DEVE ESSERE CAMBIATA */
   
   // dati relativi ai post
   IDPOST = ''  //id del post su cui clicco commenta e cancella
