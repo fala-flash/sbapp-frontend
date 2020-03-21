@@ -80,7 +80,8 @@ export class BlogComponent implements OnInit {
       date: moment().format('DD/MM/YYYY').toString(),
       time: moment().format('HH:mm:ss').toString(),
       author: this.authorEmail,
-      authorid: this.authorID
+      authorid: this.authorID,
+      role: this.authorRole
     }
 
     //validate message
