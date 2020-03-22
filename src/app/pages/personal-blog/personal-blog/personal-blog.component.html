@@ -1,38 +1,41 @@
-
 <div class="blogContainer">
-    <!-- blog post -->
+  <!-- blog post -->
 
-<div class="container"  *ngFor="let field of posts; let i = index">
+  <div class="container" *ngFor="let field of posts; let i = index">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-post my-5">
-            <div style="display: none;">{{i+1}}</div>
+          <div style="display: none;">{{i+1}}</div>
           <div class="card-body">
             <div class="post-item">
 
-                <!-- post -->
+              <!-- post -->
 
-                <p #POSTID id="postid" style="display: none;">{{field._id}}</p>
-                <i *ngIf="authorEmail == field.authorEmail || authorRole == 'psicologo' " (click)="getPostId(POSTID); onDeletePost()" id="deleteIcon" class="fa fa-minus-circle fa-2x text-danger"></i> 
-                <p id="timeP">{{ field.date }} {{ field.time }}</p>
-                <p *ngIf="authorRole == 'psicologo' || authorEmail == field.authorEmail" id="userName"><i class="fa fa-user-circle fa-2x text-primary"></i> {{ field.authorEmail }}</p>
-                <p *ngIf="authorEmail != field.authorEmail && authorRole != 'psicologo'" id="userName"><i class="fa fa-user-circle fa-2x text-primary"></i> Utente</p>
-                <hr>
-                <p>{{ field.text }}
-                    <i *ngIf="field.sentiment == 'positivo'" id="sentimentIcon" class="fa fa-circle fa-2x text-success"></i>
-                    <i *ngIf="field.sentiment == 'neutro'" id="sentimentIcon" class="fa fa-circle fa-2x text-warning"></i>
-                    <i *ngIf="field.sentiment == 'negativo'" id="sentimentIcon" class="fa fa-circle fa-2x text-danger"></i>   
-                </p>
+              <p #POSTID id="postid" style="display: none;">{{field._id}}</p>
+              <i *ngIf="authorEmail == field.authorEmail || authorRole == 'psicologo' "
+                (click)="getPostId(POSTID); onDeletePost()" id="deleteIcon"
+                class="fa fa-minus-circle fa-2x text-danger"></i>
+              <p id="timeP">{{ field.date }} {{ field.time }}</p>
+              <p *ngIf="authorRole == 'psicologo' || authorEmail == field.authorEmail" id="userName"><i
+                  class="fa fa-user-circle fa-2x text-primary"></i> {{ field.authorEmail }}</p>
+              <p *ngIf="authorEmail != field.authorEmail && authorRole != 'psicologo'" id="userName"><i
+                  class="fa fa-user-circle fa-2x text-primary"></i> Utente</p>
+              <hr>
+              <p>{{ field.text }}
+                <i *ngIf="field.sentiment == 'positivo'" id="sentimentIcon" class="fa fa-circle fa-2x text-success"></i>
+                <i *ngIf="field.sentiment == 'neutro'" id="sentimentIcon" class="fa fa-circle fa-2x text-warning"></i>
+                <i *ngIf="field.sentiment == 'negativo'" id="sentimentIcon" class="fa fa-circle fa-2x text-danger"></i>
+              </p>
 
-                <hr>
+              <hr>
 
-                <button data-toggle="modal" data-target="#exampleModalScrollable"
+              <button data-toggle="modal" [attr.data-target]="'#modal'+field._id"
                 class="btn btn-lg btn-primary btn-block text-uppercase">
-                    Commenti <i class="fa fa-comment fa-2x text-white"></i></button>
+                Commenti <i class="fa fa-comment fa-2x text-white"></i></button>
 
-                    <!-- commenti -->
-                    
-                 <!-- <div class="post-item" *ngFor="let comment of field.comments">
+              <!-- commenti -->
+
+              <!-- <div class="post-item" *ngFor="let comment of field.comments">
                     <p #COMMENTID id="commentid" style="display: none;">{{comment._id}}</p>
                     <i  *ngIf="authorEmail == comment.author || authorEmail == field.authorEmail || authorRole == 'psicologo'" (click)="getPostId(POSTID); getCommentId(COMMENTID); onDeleteComment()" id="deleteIcon" class="fa fa-minus-circle fa-2x text-danger"></i>
                       <p id="timeP">{{comment.date}} {{comment.time}}</p>
@@ -52,7 +55,7 @@
               </div> -->
 
 
-               <!-- text area e bottone Commenta -->
+              <!-- text area e bottone Commenta -->
 
               <!-- <div class="post-item text-lg-center">
                 <form #myForm="ngForm" (submit)="getPostId(POSTID); onCommentSubmit(i); myForm.resetForm()">
@@ -68,53 +71,59 @@
 
 
 
-            <!-- commentModal -->
+              <!-- commentModal -->
 
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div  class="modal-dialog  modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-          <div class="modal-header d-block">
-            <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h5 class="modal-title text-center" id="exampleModalScrollableTitle">Commenti</h5>
-          </div>
-          <div class="modal-body">
+              <div class="modal fade" [attr.id]="'modal'+field._id" tabindex="-1" role="dialog"
+                [attr.aria-labelledby]="'modal'+field._id" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-scrollable" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header d-block">
+                      <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h5 class="modal-title text-center" id="exampleModalScrollableTitle">Commenti</h5>
+                    </div>
+                    <div class="modal-body">
 
-              <div class="post-item" *ngFor="let comment of field.comments">
-                <p #COMMENTID id="commentid" style="display: none;">{{comment._id}}</p>
-                <i  *ngIf="authorEmail == comment.author || authorEmail == field.authorEmail || authorRole == 'psicologo'" (click)="getPostId(POSTID); getCommentId(COMMENTID); onDeleteComment()" id="deleteIcon" class="fa fa-minus-circle fa-2x text-danger"></i>
-                <p id="timeP">{{comment.date}} {{comment.time}}</p>
+                      <div class="post-item" *ngFor="let comment of field.comments">
+                        <p #COMMENTID id="commentid" style="display: none;">{{comment._id}}</p>
+                        <i *ngIf="authorEmail == comment.author || authorEmail == field.authorEmail || authorRole == 'psicologo'"
+                          (click)="getPostId(POSTID); getCommentId(COMMENTID); onDeleteComment(field._id)" id="deleteIcon"
+                          class="fa fa-minus-circle fa-2x text-danger"></i>
+                        <p id="timeP">{{comment.date}} {{comment.time}}</p>
 
-                <p *ngIf="comment.author == authorEmail || authorRole == 'psicologo'" 
-                id="userName"><i class="fa fa-user-circle fa-2x text-primary"></i> {{comment.author}}</p>
+                        <p *ngIf="comment.author == authorEmail || authorRole == 'psicologo'" id="userName"><i
+                            class="fa fa-user-circle fa-2x text-primary"></i> {{comment.author}}</p>
 
-                <p *ngIf="comment.author != authorEmail && authorRole != 'psicologo'" 
-                id="userName"><i class="fa fa-user-circle fa-2x text-primary"></i> Utente</p>
-                <hr>
-                <p>{{comment.text}}
-                  <i *ngIf="comment.sentiment == 'positivo'" id="sentimentIcon" class="fa fa-circle fa-2x text-success"></i>
-                  <i *ngIf="comment.sentiment == 'neutro'" id="sentimentIcon" class="fa fa-circle fa-2x text-warning"></i>
-                  <i *ngIf="comment.sentiment == 'negativo'" id="sentimentIcon" class="fa fa-circle fa-2x text-danger"></i>  
-                </p>
-                <hr id="commentDivider">
-              </div>     
-  
-          </div>
-          <div class="modal-footer">
-              <div class="post-item text-lg-center">   
-                <form #myForm="ngForm" (submit)="getPostId(POSTID); onCommentSubmit(i); myForm.resetForm()">
-                    <textarea [(ngModel)]="comments[i]"
-                name="text"  
-                placeholder="Scrivi un commento..." required class="form-control form-rounded" rows="3"></textarea>
-                <br>
-                <button type="submit" value="Commenta" class="btn btn-lg btn-primary btn-block text-uppercase">Commenta</button>
-                </form> 
+                        <p *ngIf="comment.author != authorEmail && authorRole != 'psicologo'" id="userName"><i
+                            class="fa fa-user-circle fa-2x text-primary"></i> Utente</p>
+                        <hr>
+                        <p>{{comment.text}}
+                          <i *ngIf="comment.sentiment == 'positivo'" id="sentimentIcon"
+                            class="fa fa-circle fa-2x text-success"></i>
+                          <i *ngIf="comment.sentiment == 'neutro'" id="sentimentIcon"
+                            class="fa fa-circle fa-2x text-warning"></i>
+                          <i *ngIf="comment.sentiment == 'negativo'" id="sentimentIcon"
+                            class="fa fa-circle fa-2x text-danger"></i>
+                        </p>
+                        <hr id="commentDivider">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <div class="post-item text-lg-center">
+                        <form #myForm="ngForm" (submit)="getPostId(POSTID); onCommentSubmit(i,field._id); myForm.resetForm()">
+                          <textarea [(ngModel)]="comments[i]" name="text" placeholder="Scrivi un commento..." required
+                            class="form-control form-rounded" rows="3"></textarea>
+                          <br>
+                          <button type="submit" value="Commenta"
+                            class="btn btn-lg btn-primary btn-block text-uppercase">Commenta</button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-          </div>
-        </div>
-      </div>    
-</div>
+                </div>
+              </div>
 
 
 
@@ -125,47 +134,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-

@@ -42,7 +42,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut:2000,
+      timeOut:1500,
       preventDuplicates: true,
       positionClass: 'toast-center-center'
     }),

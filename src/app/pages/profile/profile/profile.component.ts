@@ -35,9 +35,4 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  deleteProfile(){
-    console.log('Questa funzione cancellerà il profilo!');
-    
-  }
-
 }

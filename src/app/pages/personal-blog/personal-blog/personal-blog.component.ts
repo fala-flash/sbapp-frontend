@@ -72,8 +72,7 @@ export class PersonalBlogComponent implements OnInit {
     this.IDCOMMENT = commentId;
   }
 
-  onCommentSubmit(i: number){
-    
+  onCommentSubmit(i: number,fieldId: string){
 
     //if a comment is null, it becomes an empty string (if not, can cause problem)
     if (this.comments[i] == null ) {
@@ -96,12 +95,15 @@ export class PersonalBlogComponent implements OnInit {
     }
 
     //post comment
+
     this.authService.addComment(this.IDPOST, comment).subscribe(data => {
       this.ngOnInit();  //così vedo il commento appena inserito!
       if ((data as any).success) {
         this.toastrService.success((data as any).msg);
+        this.closeModal(fieldId);
       } else {
         this.toastrService.error((data as any).msg);
+        this.closeModal(fieldId);
       }
     })
   }
@@ -118,18 +120,19 @@ export class PersonalBlogComponent implements OnInit {
     })
   }
 
-  onDeleteComment(){
+  onDeleteComment(fieldId:string){
     /* this.ngOnInit(); */  //così vedo il commento appena rimosso
     this.authService.removeComment(this.IDPOST, this.IDCOMMENT).subscribe(data => {
       this.ngOnInit(); //così il commento scompare subito
       if ((data as any).success) {
         this.toastrService.success((data as any).msg);
+        this.closeModal(fieldId);
       } else {
         this.toastrService.error((data as any).msg);
+        this.closeModal(fieldId);
       }
     })
   }
-
 
   initComments(){
     for(var i = 0; i<this.posts.length; i++){
@@ -137,6 +140,10 @@ export class PersonalBlogComponent implements OnInit {
     }
   }
 
-  
+  closeModal(fieldId:string){
+    document.body.classList.remove("modal-open");
+    document.getElementsByClassName("modal-backdrop")[0].remove();
+  }
 
+  
 }
