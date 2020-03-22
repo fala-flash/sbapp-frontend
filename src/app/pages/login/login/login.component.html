@@ -1,19 +1,33 @@
 
-  
-    <body class="text-center">
-        <form (submit)="onLoginSubmit()" class="form-signin">
-          <img class="mb-4" src="../../../../assets/user.png" alt="" width="72" height="72">
-          <input style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email">
-          <br>
-          <input style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
-          <br>
-          <button style="border-radius: 15px;border: 3px solid rgb(0, 163, 186);" class="btn btn-lg btn-info btn-block" type="submit">Login</button>
-          <br>
-          <span>
-            <a style="color: rgb(0, 163, 186);" href="/sign-up">Non hai un account? Creane uno! -> </a>
-        </span>
-        </form>
-      </body>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
+            <div class="card card-signin my-5">
+              <div class="card-body">
+                <form (submit)="onLoginSubmit()" class="form-signin">
+                  
+                  <div class="form-label-group">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus [(ngModel)]="email" name="email">
+                    <label for="inputEmail">Email</label>
+                  </div>
+      
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required [(ngModel)]="password" name="password">
+                    <label for="inputPassword">Password</label>
+                  </div>
+      
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+                  
+                  <div class="link">
+                    <a href="/sign-up">Non hai un account? Registrati</a>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     
 

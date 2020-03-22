@@ -34,11 +34,10 @@ export class ProfileComponent implements OnInit {
      });
   }
 
-  onLogoutClick(){
-    this.authService.logout();
-  
-    this.router.navigate(['/login']);
-    return false;
+
+  deleteProfile(){
+    console.log('Questa funzione cancellerà il profilo!');
+    
   }
 
 }

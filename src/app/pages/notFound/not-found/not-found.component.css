@@ -1,10 +1,11 @@
-div{
-    height: 400px;
-    width: 800px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    color: rgb(0, 163, 186);
-  }
+.img-error {
+  max-width: 20rem;
+}
+.mb-4, .my-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}

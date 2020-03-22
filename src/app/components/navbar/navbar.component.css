@@ -1,0 +1,13 @@
+button.navbar-toggler.ml-auto.hidden-sm-up.float-xs-right:focus {
+    outline: none!important;
+}
+
+
+h5 {
+    cursor: pointer;
+}
+
+
+#logout {
+    border-radius: 5rem;
+}

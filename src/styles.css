@@ -3,23 +3,40 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/ngx-toastr/toastr.css";
+@import '~font-awesome/css/font-awesome.css';
 
 @font-face{
     font-family: 'Muli';
     src: url('./assets/fonts/Muli/static/Muli-Regular.ttf') format('truetype');
 }
 
-body, html{
-    margin: 0;
-    padding: 0;
+html, body{
+    height: 100vh;
+    font-size: calc(14px + (26 - 14) * ((50vw - 300px) / (1600 - 300)));
+    line-height: calc(1.3em + (1.5 - 1.2) * ((50vw - 300px)/(1600 - 300)));
     font-family: 'Muli';
 }
 
-.toast-top-right {
-    top: 80px;
-    right: 12px;
-  }
+
+body {
+  padding-top: 80px; 
+  margin: 0;
+}
+
+
 
 .toast-container .ngx-toastr {
     border-radius: 15px;
 }
+
+
+/*serve per non far spostare il body a sinistra quando apro il modal dei commenti*/
+
+.modal-open {
+    padding-right: 0 !important;
+  }
+  
+  .modal-open .navbar {
+    padding-right: 16px !important;
+  }
+  

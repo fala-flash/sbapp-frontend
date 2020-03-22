@@ -1,7 +1,7 @@
 {
-  "name": "stopbullying",
-  "short_name": "stopbullying",
-  "theme_color": "#1976d2",
+  "name": "sbapp",
+  "short_name": "sbapp",
+  "theme_color": "#2c3b51",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",

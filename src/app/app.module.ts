@@ -44,7 +44,7 @@ import { environment } from '../environments/environment';
     ToastrModule.forRoot({
       timeOut:2000,
       preventDuplicates: true,
-      positionClass: 'toast-top-right'
+      positionClass: 'toast-center-center'
     }),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

@@ -1,5 +1,71 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
+
+
+
+
+  
+  .card-post {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   }
+  
+  
+  .card-post .card-body {
+    padding: 2rem;
+  }
+  
+  .post-item {
+    width: 100%;
+  }
+  
+  .post-item .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+  }
+  
+ 
+  .form-rounded {
+    border-radius: 1rem;
+    color: black;
+    resize: none;
+    }
+
+
+    #deleteIcon {
+        float:right; 
+        cursor: pointer;
+    }
+
+    #timeP {
+        color: rgb(44, 59, 81);
+    }
+
+    #userName {
+        color: rgb(44,59,81); font-weight: bold; font-size: large;
+    }
+
+
+    #sentimentIcon {
+        float: right;
+    }
+
+
+
+    .modal-content {
+        border-radius: 1rem;
+    }
+
+    .modal-title {
+        color: rgb(44, 59, 81);
+        font-weight: bold;
+    }
+
+
+    #commentDivider {
+        border-top: thick solid rgb(44, 59, 81);
+    }
+ 

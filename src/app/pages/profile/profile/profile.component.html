@@ -1,19 +1,45 @@
 
-              <div *ngIf="user" class="card mx-auto" style="width: 18rem; margin-top: 10rem; border-radius: 15px; border: 5px solid rgb(0, 163, 186);">
-                <div class="card-border-info" style="background-color: rgb(0, 163, 186); color: white;border-radius: 15px;border: 3px solid rgb(0, 163, 186); " *ngIf="user._id" class="card-header">
-                  <span style="font-weight: bold;">{{user._id}}</span>
-                </div>
-                <ul class="list-group list-group-flush" style="text-align: center; border-radius: 15px; padding: 10px;">
-                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.name" class="list-group-item">Nome: <span style="font-weight: bold;">{{user.name}}</span></li>
-                  <br>
-                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.email" class="list-group-item">Email : <span style="font-weight: bold;">{{user.email}}</span></li>
-                  <br>
-                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.tel" class="list-group-item">Telefono : <span style="font-weight: bold;">{{user.tel}}</span></li>
-                  <br>
-                  <li style="padding: 10px;border-radius: 15px;border: 3px solid rgb(0, 163, 186);" *ngIf="user.role" class="list-group-item">Ruolo : <span style="font-weight: bold;">{{user.role}}</span></li>
-                </ul>
-              </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">
+        <div class="card card-profile my-5">
+          <i id="icon" class="fa fa-pied-piper fa-5x text-primary"></i>
+          <div class="card-body">
+            <div class="profile-item">
+              
+                <ul class="text-lg-left list-unstyled ml-4">
             
+                    <li *ngIf="user.name">
+                        <p><i class="fa fa-user-circle"></i> {{ user.name }}</p>
+                    </li>
+            
+                    <li *ngIf="user.email">
+                        <p><i class="fa fa-envelope"></i> {{ user.email }}</p>
+                    </li>
+            
+                    <li *ngIf="user.tel">
+                        <p><i class="fa fa-phone"></i> {{ user.tel }}</p>
+                    </li>
+            
+                    <li *ngIf="user.role">
+                        <p class="text-uppercase"><i class="fa fa-briefcase"></i> {{ user.role }}</p>
+                    </li>
+            
+                  </ul>
+  
+              <button class="btn btn-lg btn-danger btn-block text-uppercase"(click)="deleteProfile()" href="#">Cancella Profilo</button>
+              
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+            
+
+
+
         
         
           
