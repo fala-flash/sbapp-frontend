@@ -4,9 +4,15 @@
 
 @import "../node_modules/ngx-toastr/toastr.css";
 
+@font-face{
+    font-family: 'Muli';
+    src: url('./assets/fonts/Muli/static/Muli-Regular.ttf') format('truetype');
+}
+
 body, html{
     margin: 0;
     padding: 0;
+    font-family: 'Muli';
 }
 
 .toast-top-right {
